@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "watch": "tsc -w",
-    "dev": "concurrently \"npm:watch\" \"nodemon dist/index.js\""
+    "dev": "concurrently \"npm:watch\" \"nodemon dist/index.js\"",
+    "start": "node dist/index.js",
+    "deploy": "npm install && tsc && prisma generate && npm run start"
   },
   "keywords": [],
   "author": "",
