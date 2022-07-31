@@ -1,0 +1,15 @@
+{
+  "include": ["**/*.ts", "**/*.d.ts"],
+  "compilerOptions": {
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "es6",
+    "noImplicitAny": true,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "baseUrl": ".",
+    "outDir": "./dist",
+
+  }
+}
