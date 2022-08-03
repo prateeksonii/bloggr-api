@@ -38,6 +38,8 @@ export const signIn: RequestHandler = async (req, res, next) => {
 
     res.cookie("bloggr_token", sessionToken, {
       maxAge: 10 * 365 * 24 * 60 * 60 * 1000,
+      httpOnly: false,
+      secure: false,
     });
 
     res.status(200).json(user);
@@ -47,6 +49,8 @@ export const signIn: RequestHandler = async (req, res, next) => {
 };
 
 export const signOut: RequestHandler = async (req, res, next) => {
+  console.log("cookies", req.cookies);
+
   const { bloggr_token: sessionToken } = req.cookies;
 
   try {

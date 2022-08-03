@@ -4,6 +4,8 @@ import { prisma } from "../db";
 export const isAuthenticated: RequestHandler = async (req, res, next) => {
   const { bloggr_token: sessionToken } = req.cookies;
 
+  console.log("cookies", req.cookies);
+
   try {
     if (!sessionToken) {
       res.status(401);

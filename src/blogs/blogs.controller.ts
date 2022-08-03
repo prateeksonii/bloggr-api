@@ -1,4 +1,5 @@
 import { RequestHandler } from "express";
+import superjson from "superjson";
 import { prisma } from "../db";
 import {
   CreateBlogBody,
@@ -36,7 +37,7 @@ export const getAllBlogs: RequestHandler = async (req, res, next) => {
       include: { author: true, likedBy: true },
     });
 
-    return res.status(200).json(blogs);
+    return res.status(200).json(superjson.stringify(blogs));
   } catch (error) {
     next(error);
   }
@@ -45,7 +46,7 @@ export const getAllBlogs: RequestHandler = async (req, res, next) => {
 export const getBlogBySlug: RequestHandler = async (req, res, next) => {
   try {
     const { slug } = req.params as GetBlogBySlugParams;
-    const { userId } = req;
+    const { userId } = req.query;
     const blog = await prisma.blog.findUnique({
       where: {
         slug,
@@ -53,10 +54,12 @@ export const getBlogBySlug: RequestHandler = async (req, res, next) => {
       include: { author: true, likedBy: true },
     });
 
-    return res.status(200).json({
-      blog,
-      liked: blog?.likedBy?.some((user) => user.id === userId) ?? false,
-    });
+    return res.status(200).json(
+      superjson.stringify({
+        blog,
+        liked: blog?.likedBy?.some((user) => user.id === userId) ?? false,
+      })
+    );
   } catch (error) {
     next(error);
   }
@@ -75,7 +78,7 @@ export const getBlogsByUser: RequestHandler = async (req, res, next) => {
       },
     });
 
-    return res.status(200).json(blogs);
+    return res.status(200).json(superjson.stringify(blogs));
   } catch (error) {
     next(error);
   }

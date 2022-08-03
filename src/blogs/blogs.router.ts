@@ -24,7 +24,7 @@ blogRouter.get("/", getAllBlogs);
 blogRouter.get("/user", isAuthenticated, getBlogsByUser);
 blogRouter.get("/:slug", getBlogBySlug);
 blogRouter.delete("/:blogId", deleteBlog);
-blogRouter.get("/:blogId/like", isAuthenticated, likeBlog);
-blogRouter.get("/:blogId/dislike", isAuthenticated, dislikeBlog);
+blogRouter.post("/:blogId/like", isAuthenticated, likeBlog);
+blogRouter.post("/:blogId/dislike", isAuthenticated, dislikeBlog);
 
 export default blogRouter;
