@@ -86,6 +86,7 @@ export const getBlogsByUser: RequestHandler = async (req, res, next) => {
 
 export const deleteBlog: RequestHandler = async (req, res, next) => {
   try {
+    console.log("firsokt");
     const { blogId } = req.params;
 
     await prisma.blog.delete({

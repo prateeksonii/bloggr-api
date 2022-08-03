@@ -23,7 +23,7 @@ blogRouter.post(
 blogRouter.get("/", getAllBlogs);
 blogRouter.get("/user", isAuthenticated, getBlogsByUser);
 blogRouter.get("/:slug", getBlogBySlug);
-blogRouter.delete("/:blogId", deleteBlog);
+blogRouter.delete("/:blogId", isAuthenticated, deleteBlog);
 blogRouter.post("/:blogId/like", isAuthenticated, likeBlog);
 blogRouter.post("/:blogId/dislike", isAuthenticated, dislikeBlog);
 
